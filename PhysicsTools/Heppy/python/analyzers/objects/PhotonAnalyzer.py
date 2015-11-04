@@ -73,13 +73,22 @@ class PhotonAnalyzer( Analyzer ):
 
             gamma.rho = float(self.handles['rhoPhoton'].product()[0])
             # https://twiki.cern.ch/twiki/bin/view/CMS/CutBasedPhotonIdentificationRun2#Selection_implementation_details
-            if   abs(gamma.eta()) < 1.0:   gamma.EffectiveArea03 = [ 0.0234, 0.0053, 0.0896 ]
-            elif abs(gamma.eta()) < 1.479: gamma.EffectiveArea03 = [ 0.0189, 0.0103, 0.0762 ]
-            elif abs(gamma.eta()) < 2.0:   gamma.EffectiveArea03 = [ 0.0171, 0.0057, 0.0383 ]
-            elif abs(gamma.eta()) < 2.2:   gamma.EffectiveArea03 = [ 0.0129, 0.0070, 0.0534 ]
-            elif abs(gamma.eta()) < 2.3:   gamma.EffectiveArea03 = [ 0.0110, 0.0152, 0.0846 ]
-            elif abs(gamma.eta()) < 2.4:   gamma.EffectiveArea03 = [ 0.0074, 0.0232, 0.1032 ]
-            else:                          gamma.EffectiveArea03 = [ 0.0035, 0.1709, 0.1598 ]
+            #if   abs(gamma.eta()) < 1.0:   gamma.EffectiveArea03 = [ 0.0234, 0.0053, 0.0896 ]
+            #elif abs(gamma.eta()) < 1.479: gamma.EffectiveArea03 = [ 0.0189, 0.0103, 0.0762 ]
+            #elif abs(gamma.eta()) < 2.0:   gamma.EffectiveArea03 = [ 0.0171, 0.0057, 0.0383 ]
+            #elif abs(gamma.eta()) < 2.2:   gamma.EffectiveArea03 = [ 0.0129, 0.0070, 0.0534 ]
+            #elif abs(gamma.eta()) < 2.3:   gamma.EffectiveArea03 = [ 0.0110, 0.0152, 0.0846 ]
+            #elif abs(gamma.eta()) < 2.4:   gamma.EffectiveArea03 = [ 0.0074, 0.0232, 0.1032 ]
+            #else:                          gamma.EffectiveArea03 = [ 0.0035, 0.1709, 0.1598 ]
+            
+            #https://twiki.cern.ch/twiki/bin/view/CMS/CutBasedPhotonIdentificationRun2?rev=22
+            if   abs(gamma.eta()) < 1.0:   gamma.EffectiveArea03 = [ 0.0157, 0.0143, 0.0725 ]
+            elif abs(gamma.eta()) < 1.479: gamma.EffectiveArea03 = [ 0.0143, 0.0210, 0.0604 ]
+            elif abs(gamma.eta()) < 2.0:   gamma.EffectiveArea03 = [ 0.0115, 0.0147, 0.0320 ]
+            elif abs(gamma.eta()) < 2.2:   gamma.EffectiveArea03 = [ 0.0094, 0.0082, 0.0512 ]
+            elif abs(gamma.eta()) < 2.3:   gamma.EffectiveArea03 = [ 0.0095, 0.0124, 0.0766 ]
+            elif abs(gamma.eta()) < 2.4:   gamma.EffectiveArea03 = [ 0.0074, 0.0186, 0.0949 ]
+            else:                          gamma.EffectiveArea03 = [ 0.0053, 0.0320, 0.1160 ]
             
             if self.doFootprintRemovedIsolation:
                 self.attachFootprintRemovedIsolation(gamma)

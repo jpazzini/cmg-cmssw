@@ -86,7 +86,7 @@ class TauAnalyzer( Analyzer ):
             tau.idAntiE = id5(tau, "againstElectron%sMVA5")
             #print "Tau pt %5.1f: idMVA2 %d, idCI3hit %d, %s, %s" % (tau.pt(), tau.idMVA2, tau.idCI3hit, tau.tauID(self.cfg_ana.tauID), tau.tauID(self.cfg_ana.tauLooseID))
             
-            if tau.tauID(self.cfg_ana.inclusive_tauID) < self.cfg_ana.inclusive_tauIDnHits :
+            if tau.tauID(self.cfg_ana.inclusive_tauID) < self.cfg_ana.inclusive_tauIDcut :
                 event.inclusiveTaus.append(tau)
             
         for tau in event.inclusiveTaus:
@@ -105,7 +105,7 @@ class TauAnalyzer( Analyzer ):
             if tau.tauID(self.cfg_ana.loose_decayModeID) and \
                       tau.pt() > self.cfg_ana.loose_ptMin and abs(tau.eta()) < self.cfg_ana.loose_etaMax and \
                       abs(tau.dxy()) < self.cfg_ana.loose_dxyMax and abs(tau.dz()) < self.cfg_ana.loose_dzMax and \
-                      tau.tauID(self.cfg_ana.loose_tauID) < self.cfg_ana.loose_tauIDnHits and not tau.loose_lepVeto:
+                      tau.tauID(self.cfg_ana.loose_tauID) < self.cfg_ana.loose_tauIDcut and not tau.loose_lepVeto:
                 event.selectedTaus.append(tau)
             else:
                 event.otherTaus.append(tau)
@@ -155,7 +155,7 @@ setattr(TauAnalyzer,"defaultConfig",cfg.Analyzer(
     inclusive_vetoLeptonsPOG = False, # If True, the following two IDs are required
     inclusive_tauAntiMuonID = "",
     inclusive_tauAntiElectronID = "",
-    inclusive_tauIDnHits = 0,
+    inclusive_tauIDcut = 1e99,
     # loose hadronic tau selection
     loose_ptMin = 18,
     loose_etaMax = 9999,
@@ -168,6 +168,6 @@ setattr(TauAnalyzer,"defaultConfig",cfg.Analyzer(
     loose_vetoLeptonsPOG = False, # If True, the following two IDs are required
     loose_tauAntiMuonID = "againstMuonLoose3",
     loose_tauAntiElectronID = "againstElectronLooseMVA5",
-    loose_tauIDnHits = 0,
+    loose_tauIDcut = 1e99,
   )
 )
