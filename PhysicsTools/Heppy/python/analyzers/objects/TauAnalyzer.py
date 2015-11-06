@@ -86,7 +86,7 @@ class TauAnalyzer( Analyzer ):
             tau.idAntiE = id5(tau, "againstElectron%sMVA5")
             #print "Tau pt %5.1f: idMVA2 %d, idCI3hit %d, %s, %s" % (tau.pt(), tau.idMVA2, tau.idCI3hit, tau.tauID(self.cfg_ana.tauID), tau.tauID(self.cfg_ana.tauLooseID))
             
-            if tau.tauID(self.cfg_ana.inclusive_tauID) < self.cfg_ana.inclusive_tauIDcut :
+            if tau.tauID(self.cfg_ana.inclusive_tauID) and tau.tauID(self.cfg_ana.inclusive_tauID) < self.cfg_ana.inclusive_tauIDcut :
                 event.inclusiveTaus.append(tau)
             
         for tau in event.inclusiveTaus:
@@ -105,7 +105,7 @@ class TauAnalyzer( Analyzer ):
             if tau.tauID(self.cfg_ana.loose_decayModeID) and \
                       tau.pt() > self.cfg_ana.loose_ptMin and abs(tau.eta()) < self.cfg_ana.loose_etaMax and \
                       abs(tau.dxy()) < self.cfg_ana.loose_dxyMax and abs(tau.dz()) < self.cfg_ana.loose_dzMax and \
-                      tau.tauID(self.cfg_ana.loose_tauID) < self.cfg_ana.loose_tauIDcut and not tau.loose_lepVeto:
+                      tau.tauID(self.cfg_ana.loose_tauID) and tau.tauID(self.cfg_ana.loose_tauID) < self.cfg_ana.loose_tauIDcut and not tau.loose_lepVeto:
                 event.selectedTaus.append(tau)
             else:
                 event.otherTaus.append(tau)
