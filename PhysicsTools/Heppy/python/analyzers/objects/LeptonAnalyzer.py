@@ -331,7 +331,7 @@ class LeptonAnalyzer( Analyzer ):
               ele.EffectiveArea04 = 0.0
           elif self.eleEffectiveArea == "Spring15_25ns_v1":
               aeta = abs(ele.eta())
-              ## ----- https://github.com/ikrav/cmssw/blob/egm_id_747_v2/RecoEgamma/ElectronIdentification/data/Spring15/effAreaElectrons_cone03_pfNeuHadronsAndPhotons_25ns.txt
+              ## ----- https://github.com/ikrav/cmssw/blob/egm_id_7.4.12_v1/RecoEgamma/ElectronIdentification/data/Spring15/effAreaElectrons_cone03_pfNeuHadronsAndPhotons_25ns.txt
               if   aeta < 1.000: ele.EffectiveArea03 = 0.1752
               elif aeta < 1.479: ele.EffectiveArea03 = 0.1862
               elif aeta < 2.000: ele.EffectiveArea03 = 0.1411
