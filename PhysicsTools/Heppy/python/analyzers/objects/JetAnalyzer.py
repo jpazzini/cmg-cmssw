@@ -110,7 +110,7 @@ class JetAnalyzer( Analyzer ):
         self.allJetsUsedForMET = allJets
 #        print "after. rho",self.rho,self.cfg_ana.collectionPostFix,'allJets len ',len(allJets),'pt', [j.pt() for j in allJets]
 
-        if self.cfg_comp.isMC and self.cfg_comp.do_mc_match:
+        if self.cfg_comp.isMC and self.cfg_ana.do_mc_match:
             self.genJets = [ x for x in self.handles['genJet'].product() ]
             for igj, gj in enumerate(self.genJets):
                 gj.index = igj
@@ -205,7 +205,7 @@ class JetAnalyzer( Analyzer ):
             setattr(tau,"jet"+self.cfg_ana.collectionPostFix,jtaupairs[tau])
 
         #MC stuff
-        if self.cfg_comp.isMC and self.cfg_comp.do_mc_match:
+        if self.cfg_comp.isMC and self.cfg_ana.do_mc_match:
             self.deltaMetFromJetSmearing = [0, 0]
             for j in self.cleanJetsAll:
                 if hasattr(j, 'deltaMetFromJetSmearing'):
@@ -245,7 +245,7 @@ class JetAnalyzer( Analyzer ):
         setattr(event,"gamma_cleanJetsFwd"     +self.cfg_ana.collectionPostFix, self.gamma_cleanJetsFwd     ) 
 
 
-        if self.cfg_comp.isMC and self.cfg_comp.do_mc_match:
+        if self.cfg_comp.isMC and self.cfg_ana.do_mc_match:
             setattr(event,"deltaMetFromJetSmearing"+self.cfg_ana.collectionPostFix, self.deltaMetFromJetSmearing) 
             setattr(event,"cleanGenJets"           +self.cfg_ana.collectionPostFix, self.cleanGenJets           )
             setattr(event,"genJets"                +self.cfg_ana.collectionPostFix, self.genJets                )
