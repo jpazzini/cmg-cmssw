@@ -114,7 +114,8 @@ class JetAnalyzer( Analyzer ):
             self.genJets = [ x for x in self.handles['genJet'].product() ]
             for igj, gj in enumerate(self.genJets):
                 gj.index = igj
-            self.matchJets(event, allJets)
+            if getattr(self.cfg_ana, 'do_mc_match', False):
+                self.matchJets(event, allJets)
             if getattr(self.cfg_ana, 'smearJets', False):
                 self.smearJets(event, allJets)
         
@@ -381,7 +382,7 @@ setattr(JetAnalyzer,"defaultConfig", cfg.Analyzer(
     cleanJetsFromIsoTracks = False,
     alwaysCleanPhotons = False,
     jecPath = "",
-    do_mc_match=True,
+    do_mc_match=False,
     cleanGenJetsFromPhoton = False,
     collectionPostFix = ""
     )
